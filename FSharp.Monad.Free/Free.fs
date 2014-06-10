@@ -52,3 +52,17 @@ module Free =
   let liftF (g: Functor<'G>) (value: _1<'G, 'B>) = g.Map(done_, value) |> suspend
 
   let inline bind f (free: Free<_, _>) = free.Bind(f)
+
+  // port from https://github.com/scalaz/scalaz
+  let rec run functor_ cast_ free =
+    match resume functor_ free with
+    | Choice1Of2 k -> run functor_ cast_ (cast_ k)
+    | Choice2Of2 a -> a
+
+type FreeBuilder () =
+  member this.Return(x) = Free.done_ x
+  member this.Bind(x, f) = Free.bind f x
+
+[<AutoOpen>]
+module FreeInstance =
+  let free = FreeBuilder()
