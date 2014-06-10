@@ -45,7 +45,7 @@ module Free =
         let value = f.Map(g, d.Value)
         Choice1Of2 value
       | _ ->
-        let gosub2 = gosub1.Value :?> Gosub<'F, Free<'F, 'A>, 'A>
+        let gosub2 = gosub1.Value :?> Gosub<'F, 'A, 'A>
         gosub2.Value.Bind(fun o -> (gosub2.Func o).Bind(gosub1.Func))
         |> resume f
         
