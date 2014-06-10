@@ -52,6 +52,7 @@ module Free =
   let liftF (g: Functor<'G>) (value: _1<'G, 'B>) = g.Map(done_, value) |> suspend
 
   let inline bind f (free: Free<_, _>) = free.Bind(f)
+  let (>>=) m f = bind f m
 
   // port from https://github.com/scalaz/scalaz
   let rec run functor_ cast_ free =

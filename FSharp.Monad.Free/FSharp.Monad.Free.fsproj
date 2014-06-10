@@ -50,6 +50,8 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="Free.fs" />
+    <Compile Include="F0.fs" />
+    <Compile Include="Trampoline.fs" />
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>

@@ -55,6 +55,7 @@
     <None Include="app.config" />
     <Compile Include="CharToy.fs" />
     <Compile Include="ToyCharTest.fs" />
+    <Compile Include="TrampolineTest.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FsUnit.NUnit">
