@@ -19,13 +19,13 @@ module TrampolineTest =
   [<Test>]
   let ``fib test`` () =
     fib 6M
-    |> Free.run F0.functor_ F0.run
+    |> Free.run<decimal, decimal, F0, decimal> F0.functor_ F0.run
     |> should equal 8M
 
   //[<Test>]
   //let ``more fib test`` () =
   //  fib 35M
-  //  |> Free.run F0.functor_ F0.run
+  //  |> Free.run<decimal, decimal, F0, decimal> F0.functor_ F0.run
   //  |> should equal 9227465M
 
   let rec factorial n =
@@ -39,5 +39,5 @@ module TrampolineTest =
   [<Test>]
   let ``factorial test`` () =
     factorial 5M
-    |> Free.run F0.functor_ F0.run
+    |> Free.run<decimal, decimal, F0, decimal> F0.functor_ F0.run
     |> should equal 120M

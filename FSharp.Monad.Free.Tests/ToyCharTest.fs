@@ -6,7 +6,7 @@ open FSharp.Monad
 
 module Program =
   let rec showProgram (program: Free<Z, 'R>) =
-    match program |> Free.resume CharToy.functor_ with
+    match program |> Free.resume<'R, 'R, Z, 'R> CharToy.functor_ with
     | Choice1Of2 r ->
       r :?> CharToy<Free<Z, 'R>>
       |> CharToy.fold (fun next a -> "output " + string a + "\n" + showProgram(next)) (fun next -> "bell \n" + showProgram(next)) "done\n"

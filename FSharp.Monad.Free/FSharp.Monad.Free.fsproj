@@ -54,6 +54,8 @@
     <Compile Include="Free.fs" />
     <Compile Include="F0.fs" />
     <Compile Include="Trampoline.fs" />
+    <Compile Include="CoYoneda.fs" />
+    <Compile Include="Operational.fs" />
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>

@@ -30,20 +30,20 @@ module Free =
   let suspend a = Suspend(a) :> Free<_, _>
   let gosub f a = Gosub(a, f) :> Free<_, _>
 
-  let rec resume (f: Functor<'F>) (free: Free<'F, 'A>) =
+  let rec resume<'X1, 'X2, 'F, 'A> (f: Functor<'F>) (free: Free<'F, 'A>) =
     match free with
     | :? Done<'F, 'A> as d -> Choice2Of2 d.Value
-    | :? Suspend<_, _> as s -> Choice1Of2 s.Value
+    | :? Suspend<'F, 'A> as s -> Choice1Of2 s.Value
     | _ ->
-      let gosub1 = free :?> Gosub<'F, _, 'A>
+      let gosub1 = free :?> Gosub<'F, 'X1, 'A>
       match gosub1.Value with
-      | :? Done<'F, 'A> as d -> d.Value |> gosub1.Func |> resume f
-      | :? Suspend<_, _> as d ->
+      | :? Done<'F, 'X1> as d -> d.Value |> gosub1.Func |> resume f
+      | :? Suspend<'F, 'X1> as d ->
         let g = fun (o: Free<_, _>) -> o.Bind(gosub1.Func)
         let value = f.Map(g, d.Value)
         Choice1Of2 value
       | _ ->
-        let gosub2 = gosub1.Value :?> Gosub<'F, 'A, 'A>
+        let gosub2 = gosub1.Value :?> Gosub<'F, 'X2, 'X1>
         gosub2.Value.Bind(fun o -> (gosub2.Func o).Bind(gosub1.Func))
         |> resume f
         
@@ -53,8 +53,8 @@ module Free =
   let (>>=) m f = bind f m
 
   // port from https://github.com/scalaz/scalaz
-  let rec run functor_ cast_ free =
-    match resume functor_ free with
+  let rec run<'X1, 'X2, 'F, 'T> functor_ cast_ (free: Free<'F, 'T>) =
+    match resume<'X1, 'X2, 'F, 'T> functor_ free with
     | Choice1Of2 k -> run functor_ cast_ (cast_ k)
     | Choice2Of2 a -> a
 
