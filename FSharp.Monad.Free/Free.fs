@@ -60,6 +60,7 @@ module Free =
 
 type FreeBuilder () =
   member this.Return(x) = Free.done_ x
+  member this.ReturnFrom(x) = x
   member this.Bind(x, f) = Free.bind f x
 
 [<AutoOpen>]
