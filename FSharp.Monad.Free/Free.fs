@@ -17,16 +17,11 @@ and [<Sealed>] Gosub<'F, 'A, 'B> (a: Free<'F, 'A>, f: 'A -> Free<'F, 'B>) =
   interface Free<'F, 'B> with
     member this.Bind(g) = Gosub(a, fun a -> Gosub(f a, g) :> Free<'F, 'C>) :> Free<_, _>
 
-type _1<'F, 'A> = interface end
-
 [<Sealed>]
 type Suspend<'F, 'A> (a: _1<'F, Free<'F, 'A>>) =
   member this.Value = a
   interface Free<'F, 'A> with
     member this.Bind(f) = Gosub(this, f) :> Free<_, _>
-
-type Functor<'F> =
-  abstract member Map: ('A -> 'B) * _1<'F, 'A> -> _1<'F, 'B>
 
 module Free =
 

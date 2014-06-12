@@ -49,6 +49,8 @@
   </Choose>
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
+    <Compile Include="_1.fs" />
+    <Compile Include="Functor.fs" />
     <Compile Include="Free.fs" />
     <Compile Include="F0.fs" />
     <Compile Include="Trampoline.fs" />
