@@ -5,12 +5,13 @@
 type Free<'F, 'A> =
   abstract member Bind: ('A -> Free<'F, 'B>) -> Free<'F, 'B>
 
-and Done<'F, 'A> (a: 'A) =
+[<Sealed>]
+type Done<'F, 'A> (a: 'A) =
   member this.Value = a
   interface Free<'F, 'A> with
     member this.Bind(f) = Gosub(this, f) :> Free<_, _>
 
-and Gosub<'F, 'A, 'B> (a: Free<'F, 'A>, f: 'A -> Free<'F, 'B>) =
+and [<Sealed>] Gosub<'F, 'A, 'B> (a: Free<'F, 'A>, f: 'A -> Free<'F, 'B>) =
   member this.Value = a
   member this.Func = f
   interface Free<'F, 'B> with
@@ -18,6 +19,7 @@ and Gosub<'F, 'A, 'B> (a: Free<'F, 'A>, f: 'A -> Free<'F, 'B>) =
 
 type _1<'F, 'A> = interface end
 
+[<Sealed>]
 type Suspend<'F, 'A> (a: _1<'F, Free<'F, 'A>>) =
   member this.Value = a
   interface Free<'F, 'A> with
