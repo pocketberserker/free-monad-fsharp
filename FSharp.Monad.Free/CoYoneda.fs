@@ -29,7 +29,7 @@ module CoYoneda =
     member x.Map<'A, 'B>(f: 'A -> 'B, ya: _1<CoYoneda,'A>) =
       ya :?> CoYoneda<'F, 'A> |> map<'F, 'T, 'A, 'B> f :> _1<CoYoneda, 'B> }
 
-  let run<'F, 'A, 'T> (coyoneda: CoYoneda<_1<CoYoneda, 'T>, 'A>) =
-    functor_<'T, 'T>.Map(coyoneda.Func<'T>(), coyoneda.Value)
+  let run<'F, 'T, 'A> (coyoneda: CoYoneda<_1<CoYoneda, 'T>, 'A>) =
+    functor_<'F, 'T>.Map(coyoneda.Func<'T>(), coyoneda.Value)
 
   let lift<'F, 'T> (fa: 'F) = apply<'F, 'T, 'T> fa id
