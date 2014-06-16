@@ -53,6 +53,9 @@
     <Compile Include="Functor.fs" />
     <Compile Include="Free.fs" />
     <Compile Include="F0.fs" />
+    <Compile Include="F1.fs" />
+    <Compile Include="Apply.fs" />
+    <Compile Include="Applicative.fs" />
     <Compile Include="Trampoline.fs" />
     <Compile Include="CoYoneda.fs" />
     <Compile Include="Operational.fs" />
