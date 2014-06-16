@@ -15,3 +15,4 @@ module F1 =
 module F1DefaultOps =
 
   let (|F1|) f = F1.ofFunc f
+  let (|StdF1|) f = F1.toFunc f
