@@ -64,5 +64,5 @@ type FreeBuilder () =
   member this.Bind(x, f) = Free.bind f x
 
 [<AutoOpen>]
-module FreeInstance =
+module FreeDefaultOps =
   let free = FreeBuilder()
