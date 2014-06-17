@@ -57,6 +57,7 @@
     <Compile Include="Apply.fs" />
     <Compile Include="Applicative.fs" />
     <Compile Include="Bind.fs" />
+    <Compile Include="Kleisli.fs" />
     <Compile Include="Monad.fs" />
     <Compile Include="Trampoline.fs" />
     <Compile Include="CoYoneda.fs" />
