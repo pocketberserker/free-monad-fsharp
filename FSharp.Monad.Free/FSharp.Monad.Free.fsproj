@@ -59,10 +59,10 @@
     <Compile Include="Bind.fs" />
     <Compile Include="Kleisli.fs" />
     <Compile Include="Monad.fs" />
+    <Compile Include="CoYoneda.fs" />
     <Compile Include="Free.fs" />
     <Compile Include="Id.fs" />
     <Compile Include="Trampoline.fs" />
-    <Compile Include="CoYoneda.fs" />
     <Compile Include="Operational.fs" />
     <None Include="app.config" />
   </ItemGroup>

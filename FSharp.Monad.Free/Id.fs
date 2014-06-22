@@ -19,3 +19,5 @@ module Id =
     member this.Map(f, fa) = (fa :?> Id<_>) |> map f :> _1<Id, _>
     member this.Point(a) = { Value = a.Apply() } :> _1<Id, _>
     member this.Bind(f, fa) = (fa :?> Id<_>) |> bind (fun a -> f.Apply(a) :?> Id<_>) :> _1<Id, _> }
+
+  let run i = i.Value

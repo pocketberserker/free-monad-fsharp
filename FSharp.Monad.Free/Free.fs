@@ -2,7 +2,10 @@
 
 // port from https://github.com/xuwei-k/free-monad-java/
 
+type Free = Free
+
 type Free<'F, 'A> =
+  inherit _1<Free, 'A>
   abstract member Bind: ('A -> Free<'F, 'B>) -> Free<'F, 'B>
 
 [<Sealed>]
@@ -24,6 +27,7 @@ type private Suspend<'F, 'A> (a: _1<'F, Free<'F, 'A>>) =
   interface Free<'F, 'A> with
     member this.Bind(f) = Gosub(this, f) :> Free<_, _>
 
+[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module Free =
 
   let done_ b = Done(b) :> Free<_, _>
@@ -64,6 +68,13 @@ module Free =
     match resume f free with
     | Choice1Of2 l -> Bind.bind m (fun x -> foldMap nt f m x) (nt.Apply(l))
     | Choice2Of2 r -> Applicative.point m (fun () -> r)
+
+  let monad (functor_: Functor<'F>) = { new Monad<Free>() with
+    member this.Point(a) = a.Apply() |> done_ :> _1<Free, _>
+    member this.Bind(f, fa) =
+      (fa :?> Free<'F, _>) |> bind (fun a -> f.Apply(a) :?> Free<'F, _>) :> _1<Free, _> }
+
+  let coyoneda<'F, 'T> = monad CoYoneda.functor_<'F, 'T>
 
 type FreeBuilder () =
   member this.Return(x) = Free.done_ x
