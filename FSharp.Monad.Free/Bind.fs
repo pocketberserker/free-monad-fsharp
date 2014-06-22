@@ -6,4 +6,4 @@ type Bind<'F> =
 
 module Bind =
 
-  let bind (b: Bind<_>) (F1 f) a = b.Bind(f, a)
+  let bind (b: #Bind<_>) (F1 f) a = b.Bind(f, a)

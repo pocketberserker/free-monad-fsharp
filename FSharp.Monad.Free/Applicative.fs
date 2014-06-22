@@ -6,4 +6,4 @@ type Applicative<'F> =
 
 module Applicative =
 
-  let point (ap: Applicative<_>) (F0 f) = ap.Point(f)
+  let point (ap: #Applicative<_>) (F0 f) = ap.Point(f)

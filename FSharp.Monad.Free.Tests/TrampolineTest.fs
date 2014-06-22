@@ -16,16 +16,18 @@ module TrampolineTest =
         return x + y
       }
 
+  let run<'X1, 'X2, 'T> f = Free.run<'X1, 'X2, F0, 'T> F0.functor_ Free.castF0 f
+
   [<Test>]
   let ``fib test`` () =
     fib 6M
-    |> Free.run<decimal, decimal, F0, decimal> F0.functor_ F0.run
+    |> run<decimal, decimal, decimal>
     |> should equal 8M
 
   //[<Test>]
   //let ``more fib test`` () =
   //  fib 35M
-  //  |> Free.run<decimal, decimal, F0, decimal> F0.functor_ F0.run
+  //  |> run<decimal, decimal, decimal>
   //  |> should equal 9227465M
 
   let rec factorial n =
@@ -39,5 +41,5 @@ module TrampolineTest =
   [<Test>]
   let ``factorial test`` () =
     factorial 5M
-    |> Free.run<decimal, decimal, F0, decimal> F0.functor_ F0.run
+    |> run<decimal, decimal, decimal>
     |> should equal 120M

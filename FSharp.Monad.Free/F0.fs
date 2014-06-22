@@ -20,8 +20,6 @@ module F0 =
   let functor_ = { new Functor<F0> with
     member this.Map(f, fa: _1<F0, _>) = (fa :?> F0<_>) |> map f :> _1<_, _> }
 
-  let run (x: _1<F0, Free<F0, 'T>>) = (x :?> F0<Free<F0, _>>).Apply ()
-
 [<AutoOpen>]
 module F0DefaultOps =
 

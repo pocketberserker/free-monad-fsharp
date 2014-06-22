@@ -58,6 +58,13 @@ module Free =
     | Choice1Of2 k -> run functor_ cast_ (cast_ k)
     | Choice2Of2 a -> a
 
+  let castF0<'T> (x: _1<F0, Free<F0, 'T>>) = (x :?> F0<Free<F0, 'T>>).Apply ()
+
+  let rec foldMap (nt: NT<_, _>) (f: Functor<_>) (m: Monad<_>) free =
+    match resume f free with
+    | Choice1Of2 l -> Bind.bind m (fun x -> foldMap nt f m x) (nt.Apply(l))
+    | Choice2Of2 r -> Applicative.point m (fun () -> r)
+
 type FreeBuilder () =
   member this.Return(x) = Free.done_ x
   member this.ReturnFrom(x) = x
