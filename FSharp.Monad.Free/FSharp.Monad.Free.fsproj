@@ -65,6 +65,7 @@
     <Compile Include="Trampoline.fs" />
     <Compile Include="Operational.fs" />
     <Compile Include="Coproduct.fs" />
+    <Compile Include="Inject.fs" />
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
