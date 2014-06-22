@@ -54,14 +54,17 @@
     <Compile Include="Functor.fs" />
     <Compile Include="F0.fs" />
     <Compile Include="F1.fs" />
+    <Compile Include="T2.fs" />
     <Compile Include="Apply.fs" />
     <Compile Include="Applicative.fs" />
     <Compile Include="Bind.fs" />
     <Compile Include="Kleisli.fs" />
     <Compile Include="Monad.fs" />
+    <Compile Include="Semigroup.fs" />
     <Compile Include="CoYoneda.fs" />
     <Compile Include="Free.fs" />
     <Compile Include="Id.fs" />
+    <Compile Include="WriterT.fs" />
     <Compile Include="Trampoline.fs" />
     <Compile Include="Operational.fs" />
     <Compile Include="Coproduct.fs" />
