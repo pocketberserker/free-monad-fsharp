@@ -1,7 +1,7 @@
 ﻿namespace FSharp.Monad
 
 [<AbstractClass>]
-type Monad<'F> =
+type Monad<'F>() =
   abstract member Point : F0<'T> -> _1<'F, 'T>
   abstract member Bind: F1<'A, _1<'F, 'B>> * _1<'F, 'A> -> _1<'F, 'B>
   abstract member Ap :F0<_1<'F, F1<'A, 'B>>> * F0<_1<'F, 'A>> -> _1<'F, 'B>

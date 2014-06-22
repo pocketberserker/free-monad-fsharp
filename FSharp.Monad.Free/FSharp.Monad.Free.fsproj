@@ -50,6 +50,7 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="_1.fs" />
+    <Compile Include="NT.fs" />
     <Compile Include="Functor.fs" />
     <Compile Include="Free.fs" />
     <Compile Include="F0.fs" />
@@ -59,6 +60,7 @@
     <Compile Include="Bind.fs" />
     <Compile Include="Kleisli.fs" />
     <Compile Include="Monad.fs" />
+    <Compile Include="Id.fs" />
     <Compile Include="Trampoline.fs" />
     <Compile Include="CoYoneda.fs" />
     <Compile Include="Operational.fs" />
