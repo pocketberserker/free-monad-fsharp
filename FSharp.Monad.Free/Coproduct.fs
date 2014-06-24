@@ -18,3 +18,7 @@ module Coproduct =
       fa :?> Coproduct<_, _, _>
       |> map f g func
       :> _1<Coproduct, _> }
+
+  let left x = Coproduct (Choice1Of2 x)
+
+  let right x = Coproduct (Choice2Of2 x)
