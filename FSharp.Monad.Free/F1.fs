@@ -1,8 +1,12 @@
 ﻿namespace FSharp.Monad
 
+type F1 = F1
+
 type F1<'T, 'U> = {
   Apply : 'T -> 'U
 }
+  with
+    interface _1<F1, 'U>
 
 [<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module F1 =

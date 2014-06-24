@@ -1,14 +1,19 @@
 ﻿namespace FSharp.Monad
 
+type WriterT = WriterT
+
 type WriterT<'F, 'W, 'A> = {
   Run: _1<'F, T2<'W, 'A>>
 }
+  with
+    interface _1<WriterT, 'A>
 
 [<AutoOpen>]
 module WriterTDefaultOps =
 
   let (|WriterT|) w = w.Run
 
+[<CompilationRepresentation(CompilationRepresentationFlags.ModuleSuffix)>]
 module WriterT =
 
   let run w = w.Run
