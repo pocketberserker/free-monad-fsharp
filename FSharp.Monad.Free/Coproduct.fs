@@ -22,3 +22,7 @@ module Coproduct =
   let left x = Coproduct (Choice1Of2 x)
 
   let right x = Coproduct (Choice2Of2 x)
+
+  let fold f g = function
+    | Coproduct (Choice1Of2 l) -> f l
+    | Coproduct (Choice2Of2 r) -> g r
